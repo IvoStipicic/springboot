@@ -1,6 +1,7 @@
 package com.alkemy.disney.controller.rest;
 
 import com.alkemy.disney.dto.CharacterDto;
+import com.alkemy.disney.dto.CharacterModifyDto;
 import com.alkemy.disney.entity.Character;
 import com.alkemy.disney.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,7 @@ public class CharacterRestController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Character updateCharacter(@RequestBody Character character, @PathVariable(value = "id") int id){
+    public Character updateCharacter(@RequestBody CharacterModifyDto character, @PathVariable(value = "id") int id){
         return characterService.modifyCharacter(character);
     }
 

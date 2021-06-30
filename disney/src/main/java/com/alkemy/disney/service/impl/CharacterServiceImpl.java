@@ -2,6 +2,7 @@ package com.alkemy.disney.service.impl;
 
 
 import com.alkemy.disney.dto.CharacterDto;
+import com.alkemy.disney.dto.CharacterModifyDto;
 import com.alkemy.disney.entity.Character;
 import com.alkemy.disney.repository.CharacterRepository;
 import com.alkemy.disney.service.CharacterService;
@@ -17,7 +18,6 @@ import java.util.Optional;
 public class CharacterServiceImpl implements CharacterService {
 
     private final CharacterRepository characterRepository;
-
 
     public CharacterServiceImpl(CharacterRepository characterRepository) {
         this.characterRepository = characterRepository;
@@ -42,16 +42,14 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    public Character modifyCharacter(Character character) {
-        Character existCharacter = characterRepository.findById(character.getId()).orElse(null);
-
+    public Character modifyCharacter(CharacterModifyDto character) {
+        Character existCharacter = characterRepository.findById(character.getId()).orElseThrow();
             existCharacter.setName(character.getName());
             existCharacter.setAge(character.getAge());
             existCharacter.setWeight(character.getWeight());
             existCharacter.setHistory(character.getHistory());
             existCharacter.setMovies(character.getMovies());
             existCharacter.setImage(character.getImage());
-
         return characterRepository.save(existCharacter);
     }
 
